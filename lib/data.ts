@@ -55,7 +55,7 @@ export const socials: SocialLink[] = [
 
 export const about: string[] = [
   "I'm a Software Engineering master's student at San José State University, graduating December 2027, based in Cupertino, California. I keep ending up at the same problem from different angles: finite supply, uncertain demand, and who gets what.",
-  "At my internship I built internal tooling around how stock is allocated to satisfy supply and demand. Now I'm applying that same thinking to compute: AINS is an execution layer for legacy ERP inventory, and my capacity planner forecasts demand and optimizes headroom against cost and SLO tradeoffs.",
+  "At my internship I built internal tooling around how stock is allocated to satisfy supply and demand. Now I'm applying that same thinking to compute: Avail is an execution layer for legacy ERP inventory, and my capacity planner forecasts demand and optimizes headroom against cost and SLO tradeoffs.",
   "Outside of that, I run MLB and NFL projection models on my Gametime site. Off the clock you'll find me playing Valorant, taking my dog to In-N-Out, or putting my AI assistant — named after my dog — to work.",
 ];
 
@@ -80,10 +80,10 @@ export const education = {
 
 export const projects: Project[] = [
   {
-    slug: "ains",
-    title: "AINS",
+    slug: "avail",
+    title: "Avail",
     description:
-      "AI-native service company: an allocation layer that links sales orders to purchase orders and on-hand inventory for legacy ERPs (Sage 100). Anaplan is a planning canvas; AINS is an execution layer.",
+      "An allocation layer that links sales orders to purchase orders and on-hand inventory for legacy ERPs (Sage 100). Anaplan is a planning canvas; Avail is an execution layer.",
     tech: ["Python", "FastMCP", "MCP", "Sage 100"],
     links: [],
     note: "Private repo",

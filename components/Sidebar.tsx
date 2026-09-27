@@ -20,11 +20,19 @@ function GitHubIcon() {
  * Sticky left column: name, title, tagline, scroll-spy nav, socials.
  * Mirrors the reference site's fixed-sidebar layout on desktop and
  * stacks above the content on mobile.
+ *
+ * variant "home" (default): scroll-spy nav over homepage sections, plus a
+ *   link to the /writing page.
+ * variant "writing": used on /writing pages — nav links back to homepage
+ *   sections, with Writing marked active. No scroll-spy.
  */
-export default function Sidebar() {
-  const [active, setActive] = useState<string>("about");
+export default function Sidebar({ variant = "home" }: { variant?: "home" | "writing" }) {
+  const [active, setActive] = useState<string>(
+    variant === "writing" ? "writing" : "about"
+  );
 
   useEffect(() => {
+    if (variant !== "home") return;
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -38,7 +46,16 @@ export default function Sidebar() {
       if (el) observer.observe(el);
     }
     return () => observer.disconnect();
-  }, []);
+  }, [variant]);
+
+  const navItems = [
+    ...navSections.map(({ id, label }) => ({
+      key: id,
+      label,
+      href: variant === "home" ? `#${id}` : `/#${id}`,
+    })),
+    { key: "writing", label: "Writing", href: "/writing" },
+  ];
 
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
@@ -55,12 +72,12 @@ export default function Sidebar() {
 
         <nav aria-label="Sections" className="mt-16 hidden lg:block">
           <ul className="w-max">
-            {navSections.map(({ id, label }) => {
-              const isActive = active === id;
+            {navItems.map(({ key, label, href }) => {
+              const isActive = active === key;
               return (
-                <li key={id}>
+                <li key={key}>
                   <a
-                    href={`#${id}`}
+                    href={href}
                     aria-current={isActive ? "true" : undefined}
                     className="group flex items-center gap-4 py-3"
                   >

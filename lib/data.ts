@@ -25,6 +25,8 @@ export interface ProjectLink {
 }
 
 export interface Project {
+  /** URL-safe id, e.g. "capacity-planner". Post frontmatter `project` matches this. Also used as the card's anchor id. */
+  slug: string;
   title: string;
   description: string;
   tech: string[];
@@ -78,6 +80,7 @@ export const education = {
 
 export const projects: Project[] = [
   {
+    slug: "ains",
     title: "AINS",
     description:
       "AI-native service company: an allocation layer that links sales orders to purchase orders and on-hand inventory for legacy ERPs (Sage 100). Anaplan is a planning canvas; AINS is an execution layer.",
@@ -86,6 +89,7 @@ export const projects: Project[] = [
     note: "Private repo",
   },
   {
+    slug: "capacity-planner",
     title: "Capacity Planner",
     status: "In progress",
     description:
@@ -95,6 +99,7 @@ export const projects: Project[] = [
     note: "Repo coming soon",
   },
   {
+    slug: "gametime",
     title: "Gametime",
     description:
       "MLB ensemble and NFL projection models served through a live web app.",
@@ -105,6 +110,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "valorant-champions-2026",
     title: "Valorant Champions 2026 Predictions",
     description:
       "Ensemble prediction model for the 2026 Valorant Champions tournament.",

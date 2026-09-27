@@ -1,0 +1,41 @@
+---
+title: "[Sample] Capacity planner: thinking in headroom"
+date: "2026-09-27"
+description: "Sample post demonstrating the writing format — headings, code blocks, links — and the project ↔ post linkage. Delete this file to remove it."
+project: "capacity-planner"
+---
+
+> **This is a sample post.** It shows the writing format and how a post links to a project (see "Related writing" on the Capacity Planner card). Delete `content/writing/sample-capacity-planner.mdx` to remove it.
+
+## Headings structure the post
+
+Sections use `##` headings like this one. Subsections use `###`. Keep paragraphs short — recruiters skim.
+
+## Code blocks
+
+Fenced code blocks render in a dark panel:
+
+```python
+def required_capacity(peak_demand: float, headroom: float = 0.30) -> float:
+    """Naive headroom model: provision peak demand plus a buffer."""
+    return peak_demand * (1 + headroom)
+
+
+print(required_capacity(100.0))  # 130.0
+```
+
+Inline code looks like `headroom = 0.30` inside a sentence.
+
+## Links
+
+- An internal link: [back to the writing index](/writing)
+- An external link: [Next.js docs](https://nextjs.org/docs) (opens in a new tab)
+
+## Project linkage
+
+This post sets `project: "capacity-planner"` in its frontmatter, matching the `slug` in `lib/data.ts`. That does two things:
+
+1. It appears under **Related writing** on the Capacity Planner project card.
+2. The post page links back to the project.
+
+Posts without a `project` field appear only in the writing index.

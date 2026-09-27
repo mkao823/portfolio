@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { projects, type Project } from "@/lib/data";
+import { getPostsByProject } from "@/lib/writing";
 
 function ArrowIcon() {
   return (
@@ -19,6 +21,7 @@ function ArrowIcon() {
 
 function ProjectCard({ project }: { project: Project }) {
   const primaryLink = project.links[0];
+  const relatedPosts = getPostsByProject(project.slug);
   const title = (
     <span className="inline-flex items-baseline font-medium leading-snug text-slate-200 group-hover:text-accent">
       {project.title}
@@ -74,6 +77,25 @@ function ProjectCard({ project }: { project: Project }) {
         {project.note && (
           <p className="mt-3 text-xs italic text-slate-500">{project.note}</p>
         )}
+        {relatedPosts.length > 0 && (
+          <div className="mt-3">
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+              Related writing
+            </p>
+            <ul className="mt-1.5 space-y-1">
+              {relatedPosts.map((post) => (
+                <li key={post.slug}>
+                  <Link
+                    href={`/writing/${post.slug}`}
+                    className="text-sm font-medium text-slate-300 transition-colors hover:text-accent"
+                  >
+                    {post.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <ul
           className="mt-2 flex flex-wrap gap-2"
           aria-label="Technologies used"
@@ -104,7 +126,11 @@ export default function Projects() {
       </h2>
       <ol className="group/list space-y-8">
         {projects.map((project) => (
-          <li key={project.title}>
+          <li
+            key={project.slug}
+            id={`project-${project.slug}`}
+            className="scroll-mt-24"
+          >
             <ProjectCard project={project} />
           </li>
         ))}
